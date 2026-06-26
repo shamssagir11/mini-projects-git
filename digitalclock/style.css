@@ -1,8 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#000428,#004e92,#0f2027,#2c5364);
+    background-size:400% 400%;
+    animation:bg 10s ease infinite;
+    overflow:hidden;
+}
+
+@keyframes bg{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+/* Glow Background */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    background:#00e5ff;
+
+    border-radius:50%;
+
+    left:-100px;
+    top:-100px;
+
+    filter:blur(130px);
+
+    opacity:.5;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    background:#ff00aa;
+
+    border-radius:50%;
+
+    right:-100px;
+    bottom:-100px;
+
+    filter:blur(130px);
+
+    opacity:.5;
+
+}
+
 .box{
-    display: flex;
-    justify-content: center;
-    width: 150px;
-    height: 80px;
-    border: 5px solid blueviolet;
-    border-radius: 10px;
+
+    position:relative;
+
+    width:720px;
+
+    padding:50px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:2px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 0 30px rgba(0,255,255,.25),
+    0 0 60px rgba(255,0,200,.15);
+
+}
+
+.box::before{
+
+    content:"DIGITAL CLOCK";
+
+    position:absolute;
+
+    top:-18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#111;
+
+    color:#00ffff;
+
+    padding:8px 22px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    letter-spacing:3px;
+
+    border:1px solid cyan;
+
+}
+
+#clock{
+
+    font-size:85px;
+
+    color:#00ffff;
+
+    letter-spacing:8px;
+
+    text-shadow:
+    0 0 10px cyan,
+    0 0 25px cyan,
+    0 0 50px cyan,
+    0 0 90px cyan;
+
+}
+
+/* Hover Effect */
+
+.box:hover{
+
+    transform:scale(1.03);
+
+    transition:.4s;
+
+    box-shadow:
+    0 0 40px cyan,
+    0 0 90px rgba(255,0,255,.3);
+
+}
+
+@media(max-width:768px){
+
+.box{
+
+    width:95%;
+
+    padding:35px;
+
+}
+
+#clock{
+
+    font-size:48px;
+
+    letter-spacing:4px;
+
+}
+
 }

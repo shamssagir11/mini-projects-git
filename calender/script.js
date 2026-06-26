@@ -1,36 +1,52 @@
-const date = new Date();
+const today = new Date();
 
-    const month = date.getMonth();
-    const year = date.getFullYear();
+const currentDay = today.getDate();
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
 
-    const months = [
-        "January","February","March","April","May","June",
-        "July","August","September","October","November","December"
-    ];
+const months = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+];
 
-    document.getElementById("clender").innerText =
-        months[month] + " " + year;
+document.getElementById("clender").innerText =
+months[currentMonth] + " " + currentYear;
 
-    const first = new Date(year, month, 1).getDay();
-    const total = new Date(year, month + 1, 0).getDate();
+const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-    let body = document.getElementById("box2");
-    let row = document.createElement("tr");
+const tbody = document.getElementById("box2");
 
-    for(let i = 0; i < first; i++){
-        row.appendChild(document.createElement("td"));
+let row = document.createElement("tr");
+
+// Empty boxes before 1st day
+for(let i = 0; i < firstDay; i++){
+    row.appendChild(document.createElement("td"));
+}
+
+// Dates
+for(let day = 1; day <= totalDays; day++){
+
+    let cell = document.createElement("td");
+    cell.innerText = day;
+
+    // Highlight Today's Date
+    if(
+        day === currentDay &&
+        currentMonth === today.getMonth() &&
+        currentYear === today.getFullYear()
+    ){
+        cell.classList.add("today");
     }
 
-    for(let day = 1; day <= total; day++){
+    row.appendChild(cell);
 
-        let cell = document.createElement("td");
-        cell.innerText = day;
-        row.appendChild(cell);
-
-        if((first + day) % 7 === 0){
-            body.appendChild(row);
-            row = document.createElement("tr");
-        }
+    if((firstDay + day) % 7 === 0){
+        tbody.appendChild(row);
+        row = document.createElement("tr");
     }
+}
 
-    body.appendChild(row)
+if(row.children.length > 0){
+    tbody.appendChild(row);
+}
