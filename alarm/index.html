@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Alarm Clock</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="bg-circle circle1"></div>
+    <div class="bg-circle circle2"></div>
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1>⏰ Digital Alarm Clock</h1>
+
+            <p>
+                Wake up on time. Stay productive.
+            </p>
+
+        </div>
+
+
+        <!-- CLOCK -->
+
+        <div class="clock-card">
+
+            <div id="clock">
+                00 : 00 : 00
+            </div>
+
+            <div id="date">
+                Monday, 01 January 2026
+            </div>
+
+        </div>
+
+
+        <!-- Alarm Input -->
+
+        <div class="alarm-card">
+
+            <label>
+                Set Alarm Time
+            </label>
+
+            <input type="time" id="alarmTime">
+
+        </div>
+
+
+        <!-- Alarm Song -->
+
+        <div class="music-card">
+
+            <label>
+                Select Alarm Song
+            </label>
+
+            <input type="file"
+                   id="alarmFile"
+                   accept="audio/*">
+
+        </div>
+
+
+        <!-- Countdown -->
+
+        <div class="countdown-card">
+
+            <h3>
+                Countdown
+            </h3>
+
+            <h2 id="countdown">
+                00 : 00 : 00
+            </h2>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="buttons">
+
+            <button id="setBtn">
+                🔔 Set Alarm
+            </button>
+
+            <button id="stopBtn">
+                🛑 Stop Alarm
+            </button>
+
+            <button id="cancelBtn">
+                ❌ Cancel Alarm
+            </button>
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="status-card">
+
+            <h3>
+                Alarm Status
+            </h3>
+
+            <p id="alarmStatus">
+                No Alarm Set
+            </p>
+
+            <p id="warning"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Alarm Audio -->
+
+    <audio id="alarmSound" loop></audio>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

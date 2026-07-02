@@ -1,0 +1,389 @@
+/* ===========================
+        GOOGLE FONT
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+    position:relative;
+
+    overflow-y:auto;
+    padding:30px;
+}
+
+/* ===========================
+     BACKGROUND CIRCLES
+=========================== */
+
+.bg-circle{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.5;
+}
+
+.circle1{
+    width:280px;
+    height:280px;
+    background:#00e5ff;
+    top:-80px;
+    left:-80px;
+}
+
+.circle2{
+    width:320px;
+    height:320px;
+    background:#ff00ff;
+    bottom:-120px;
+    right:-120px;
+}
+
+/* ===========================
+        MAIN CARD
+=========================== */
+
+.container{
+
+    width:430px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+
+    animation:float 3s ease-in-out infinite;
+
+      width:430px;
+    max-width:95%;
+
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+/* ===========================
+          HEADER
+=========================== */
+
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+
+    color:#fff;
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+}
+
+.header p{
+
+    color:#dbeafe;
+
+    font-size:15px;
+
+}
+
+/* ===========================
+          CLOCK
+=========================== */
+
+.clock-card{
+
+    background:rgba(255,255,255,.18);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+    margin-bottom:22px;
+
+}
+
+#clock{
+
+    font-size:42px;
+
+    color:#00f7ff;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    text-shadow:0 0 12px cyan;
+
+}
+
+#date{
+
+    margin-top:10px;
+
+    color:#fff;
+
+    font-size:15px;
+
+}
+
+/* ===========================
+        INPUT CARDS
+=========================== */
+
+.alarm-card,
+.music-card,
+.countdown-card,
+.status-card{
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+}
+
+.alarm-card label,
+.music-card label{
+
+    display:block;
+
+    color:#fff;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+#alarmTime,
+#alarmFile{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+}
+
+/* ===========================
+        COUNTDOWN
+=========================== */
+
+.countdown-card{
+
+    text-align:center;
+
+}
+
+.countdown-card h3{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+#countdown{
+
+    color:#00ffae;
+
+    font-size:32px;
+
+    text-shadow:0 0 10px #00ffae;
+
+}
+
+/* ===========================
+          BUTTONS
+=========================== */
+
+.buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-bottom:22px;
+
+}
+
+#setBtn,
+#stopBtn,
+#cancelBtn{
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    transition:.35s;
+
+}
+
+#setBtn{
+
+    background:#22c55e;
+
+    color:white;
+
+}
+
+#setBtn:hover{
+
+    transform:translateY(-3px);
+
+    background:#16a34a;
+
+}
+
+#stopBtn{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+#stopBtn:hover{
+
+    transform:translateY(-3px);
+
+    background:#dc2626;
+
+}
+
+#cancelBtn{
+
+    background:#3b82f6;
+
+    color:white;
+
+}
+
+#cancelBtn:hover{
+
+    transform:translateY(-3px);
+
+    background:#2563eb;
+
+}
+
+/* ===========================
+          STATUS
+=========================== */
+
+.status-card{
+
+    text-align:center;
+
+}
+
+.status-card h3{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+#alarmStatus{
+
+    color:#22ff66;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+#warning{
+
+    color:#ffeb3b;
+
+    font-weight:bold;
+
+}
+
+/* ===========================
+       RESPONSIVE
+=========================== */
+
+@media(max-width:500px){
+
+.container{
+
+    width:92%;
+
+    padding:25px;
+
+}
+
+#clock{
+
+    font-size:32px;
+
+}
+
+.header h1{
+
+    font-size:28px;
+
+}
+
+}
+

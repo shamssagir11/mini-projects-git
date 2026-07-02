@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Password Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>
+                <i class="fa-solid fa-lock"></i>
+                Password Generator
+            </h1>
+
+            <!-- Password Output -->
+
+            <div class="password-box">
+
+                <input type="text" id="password" placeholder="Generate Password" readonly>
+
+                <button id="copyBtn">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+
+            </div>
+
+            <!-- Length -->
+
+            <div class="setting">
+
+                <label>
+                    Password Length
+                </label>
+
+                <span id="lengthValue">12</span>
+
+            </div>
+
+            <input type="range" min="4" max="32" value="12" id="lengthSlider">
+
+            <!-- Options -->
+
+            <div class="options">
+
+                <label>
+
+                    <input type="checkbox" id="uppercase" checked>
+
+                    Include Uppercase
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox" id="lowercase" checked>
+
+                    Include Lowercase
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox" id="numbers" checked>
+
+                    Include Numbers
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox" id="symbols" checked>
+
+                    Include Symbols
+
+                </label>
+
+            </div>
+
+            <!-- Strength -->
+
+            <div class="strength">
+
+                <p>
+                    Password Strength
+                </p>
+
+                <div class="strength-bar">
+
+                    <div id="strengthFill"></div>
+
+                </div>
+
+                <span id="strengthText">
+                    Medium
+                </span>
+
+            </div>
+
+            <!-- Generate Button -->
+
+            <button id="generateBtn">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                Generate Password
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
