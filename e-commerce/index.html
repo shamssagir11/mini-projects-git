@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ember & Ash — Small-Batch Roastery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-wrap">
+            <div class="logo">
+                <span class="logo-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#C89B3C" stroke-width="1.6">
+                        <path d="M4 8h13a3 3 0 010 6h-1" />
+                        <path d="M4 8v7a3 3 0 003 3h5a3 3 0 003-3v-1" />
+                        <path d="M8 3c0 1.2-1 1.2-1 2.4S8 7.8 8 9M12 3c0 1.2-1 1.2-1 2.4S12 7.8 12 9" />
+                    </svg>
+                </span>
+                <span>Ember &amp; Ash</span>
+            </div>
+            <nav class="links">
+                <a href="#catalog">Catalog</a>
+                <a href="#process">Roast Log</a>
+                <a href="#footer">About</a>
+            </nav>
+            <button class="cart-btn" onclick="openCart()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M3 3h2l2.4 12.4a2 2 0 002 1.6h8.2a2 2 0 002-1.6L21 8H6" />
+                    <circle cx="9" cy="20" r="1" />
+                    <circle cx="17" cy="20" r="1" />
+                </svg>
+                Cart <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <svg class="roast-curve-bg" viewBox="0 0 1180 460" preserveAspectRatio="none">
+            <path d="M0 420 C 180 400, 260 200, 420 160 C 580 120, 660 260, 820 180 C 960 110, 1040 60, 1180 90"
+                fill="none" stroke="#C89B3C" stroke-width="1" />
+        </svg>
+        <div class="hero-inner">
+            <div>
+                <div class="eyebrow">Batch #214 · Roasted this week</div>
+                <h1 class="display">Coffee, tracked<br>from <em>green</em> to cup.</h1>
+                <p class="lede">Ember &amp; Ash roasts in small batches of under 12kg. Every bag carries the actual
+                    roast curve, the farm, and the date it left the drum — no blends, no guessing.</p>
+                <div class="hero-cta">
+                    <button class="btn-primary"
+                        onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Shop the
+                        catalog</button>
+                    <button class="btn-ghost"
+                        onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">See a roast
+                        log</button>
+                </div>
+            </div>
+            <div class="hero-panel" id="process">
+                <div class="label">Batch #214 — Roast Curve</div>
+                <svg class="curve-chart" viewBox="0 0 320 90" preserveAspectRatio="none">
+                    <line x1="0" y1="75" x2="320" y2="75" stroke="#3a2c20" stroke-width="1" />
+                    <path d="M0 80 C 60 75, 100 55, 140 40 C 190 22, 230 14, 320 6" fill="none" stroke="#C89B3C"
+                        stroke-width="1.6" />
+                    <circle cx="320" cy="6" r="3" fill="#C89B3C" />
+                </svg>
+                <div class="curve-legend">
+                    <span>Charge <b>196°C</b></span>
+                    <span>First crack <b>9:40</b></span>
+                    <span>Drop <b>11:20</b></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <svg class="divider-curve" viewBox="0 0 1180 28" preserveAspectRatio="none">
+        <path d="M0 14 Q 295 28 590 14 T 1180 14" fill="none" stroke="var(--line-strong)" stroke-width="1" />
+    </svg>
+
+    <section class="section" id="catalog">
+        <div class="section-head">
+            <div>
+                <h2 class="display">This week's roasts</h2>
+                <p>Six lots, roasted Tuesday through Thursday. Each mini-curve shows how far the bean travelled — flat
+                    and long for light, steep and short for dark.</p>
+            </div>
+        </div>
+        <div class="grid" id="productGrid"></div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-inner">
+            <div class="logo" style="font-size:17px;">
+                <span class="logo-mark" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" width="13" height="13"
+                        fill="none" stroke="#C89B3C" stroke-width="1.6">
+                        <path d="M4 8h13a3 3 0 010 6h-1" />
+                        <path d="M4 8v7a3 3 0 003 3h5a3 3 0 003-3v-1" />
+                    </svg></span>
+                <span>Ember &amp; Ash</span>
+            </div>
+            <p>Roasted and shipped from a single drum. Demo store — no real orders are placed.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="overlay" id="overlay" onclick="closeCart()"></div>
+    <div class="drawer" id="drawer">
+        <div class="drawer-head">
+            <h3>Your bag</h3>
+            <button class="close-btn" onclick="closeCart()">&times;</button>
+        </div>
+        <div class="drawer-items" id="drawerItems"></div>
+        <div class="drawer-foot">
+            <div class="subtotal-row"><span>Subtotal</span><b id="subtotalAmt">$0.00</b></div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" disabled>Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-card" id="modalContent"></div>
+    </div>
+
+   <script src="app.js"></script>
+
+</body>
+
+</html>
