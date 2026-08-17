@@ -1,0 +1,134 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  avatarUrl    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  boardMemberships BoardMember[]
+  cardsAssigned    Card[]        @relation("AssignedCards")
+  comments         Comment[]
+  activityLogs     ActivityLog[]
+  attachments      Attachment[]
+}
+
+model Board {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  colorTheme  String   @default("#6366f1")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members      BoardMember[]
+  lists        List[]
+  activityLogs ActivityLog[]
+}
+
+model BoardMember {
+  id       String   @id @default(uuid())
+  role     Role     @default(MEMBER)
+  joinedAt DateTime @default(now())
+
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  String
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId String
+
+  @@unique([userId, boardId])
+}
+
+model List {
+  id        String   @id @default(uuid())
+  title     String
+  position  Int
+  createdAt DateTime @default(now())
+
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId String
+  cards   Card[]
+
+  @@index([boardId])
+}
+
+model Card {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  position    Int
+  dueDate     DateTime?
+  priority    String    @default("MEDIUM") // LOW | MEDIUM | HIGH | URGENT
+  labels      String[]  @default([])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  list        List         @relation(fields: [listId], references: [id], onDelete: Cascade)
+  listId      String
+  assignee    User?        @relation("AssignedCards", fields: [assigneeId], references: [id])
+  assigneeId  String?
+  comments    Comment[]
+  attachments Attachment[]
+
+  @@index([listId])
+}
+
+model Attachment {
+  id        String   @id @default(uuid())
+  // S3 object key only — never store a public URL, always generate a
+  // short-lived presigned GET url on demand (see attachment.controller.ts)
+  s3Key     String
+  fileName  String
+  fileType  String
+  fileSize  Int
+  createdAt DateTime @default(now())
+
+  card       Card   @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  cardId     String
+  uploadedBy User   @relation(fields: [uploadedById], references: [id])
+  uploadedById String
+
+  @@index([cardId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  text      String
+  createdAt DateTime @default(now())
+
+  card   Card   @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  cardId String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model ActivityLog {
+  id        String   @id @default(uuid())
+  action    String // e.g. "CARD_MOVED", "CARD_CREATED", "MEMBER_ADDED"
+  meta      Json?
+  createdAt DateTime @default(now())
+
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId String
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+
+  @@index([boardId])
+}
